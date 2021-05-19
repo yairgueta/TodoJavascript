@@ -13,10 +13,17 @@ export class View{
         this.todoList = document.createElement("ul")
         document.getElementById("todoItemsList").append(this.todoList)
 
+        this.animations={
+            itemContainer: {
+                in:  parseInt(getComputedStyle(this.todoList).getPropertyValue('--unshrinkDuration')),
+                out: parseInt(getComputedStyle(this.todoList).getPropertyValue('--shrinkDuration'))},
+
+        }
+
+
         this.todoListHeader = document.getElementById("items_list_header")
         this.todoListHeader.label = document.querySelector('#items_list_header label')
         this.todoListHeader.button = document.querySelector('#items_list_header button')
-
         this.form = document.querySelector("#input_new_item");
         this.form.textInput = document.querySelector("#input_new_item > input[type='text']");
         this.form.submitButton = document.querySelector("#input_new_item > button");
@@ -68,7 +75,7 @@ export class View{
 
     _createTodoItem(todo){
         const li = this._createCleanTodoItem();
-        li.container.id = this._indexToID(this.nextID++);
+        li.container.id = todo.id;
         li.container.checkbox.checked = todo.isChecked;
         li.container.label.innerText = todo.description;
         if(todo.isChecked) li.container.label.innerHTML = li.container.label.innerHTML.strike()
@@ -76,7 +83,7 @@ export class View{
     }
 
     animateAddContainer(li){
-        setTimeout(()=> li.classList.add(View.CLASSNAME_SHOW), 10)
+        setTimeout(()=> li.classList.add(View.CLASSNAME_SHOW), 15)
     }
 
     appendTodoItemToFirst(todo){
@@ -98,21 +105,19 @@ export class View{
         else item.label.innerHTML = todo.description
     }
 
-    moveItem(i, j){
-        const liClone = this.todoList.children[i].cloneNode(true)
-        this._removeLi(this.todoList.children[i])
-        this.todoList.insertBefore(liClone, this.todoList.children[j+(j>i)])
-        // this.todoList.children[i].remove()
+    moveItem(todo, i, j){
+        this.todoList.children[i].remove()
+        const li = this._createTodoItem(todo)
+        this.todoList.insertBefore(li, this.todoList.children[j])
+        this.animateAddContainer(li);
     }
 
-    _removeLi(li){
+    _removeLi(li, onFinalRemove){
         li.classList.remove(View.CLASSNAME_SHOW)
-        setTimeout(()=>li.remove(), 2010)
-    }
-
-    removeItem(i){
-        const li = this.todoList.children[i]
-        this._removeLi(li)
+        setTimeout(()=>{
+            li.remove()
+            if (onFinalRemove !== undefined) onFinalRemove()
+        }, this.animations.itemContainer.out)
     }
 
     clearTodoList(){
@@ -143,7 +148,7 @@ export class View{
     bindCheckBoxClick(handler){
         this.todoList.addEventListener('click', e => {
             if (e.target.classList.contains(View.CLASSNAME_CHECKBOX)){
-                handler(this._getContainerIndex(e.target.container), e.target.checked);
+                handler(e.target.container.id, e.target.checked);
             }
         });
     }
@@ -153,7 +158,7 @@ export class View{
             if (e.target.disabled) return
             if (e.target.classList.contains(View.CLASSNAME_DELBUTTON)){
                 e.target.disabled = true
-                handler(this._getContainerIndex(e.target.container))
+                this._removeLi(e.target.li, ()=>handler(e.target.container.id))
             }
         })
     }

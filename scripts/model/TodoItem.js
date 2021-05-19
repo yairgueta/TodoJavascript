@@ -1,16 +1,15 @@
 const todoItemCopy = document.getElementById("todo_item_to_copy").cloneNode(true);
 
 export class TodoItem {
-    static _nextId = 0;
-    constructor(isChecked = false, description = "") {
+    constructor(isChecked = false, description = "", id="") {
         this._isChecked = isChecked;
         this._description = description;
         this._creationTime = new Date();
         this._lastMosified = new Date();
-        this._id = TodoItem._nextId++;
+        this._id = id;
     }
 
-    get id() { return `todo.item.id${this._id}`; }
+    get id() { return this._id; }
 
     get isChecked() {return this._isChecked;}
     set isChecked(isChecked){
@@ -28,7 +27,7 @@ export class TodoItem {
     get lastModified() {return this._lastMosified;}
 
     static from(json){
-        return Object.assign(new TodoItem(), json);
+        return Object.assign(new TodoItem(), JSON.parse(json));
     }
 
 }

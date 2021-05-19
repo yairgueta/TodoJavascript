@@ -27,19 +27,16 @@ export class Control {
     }
 
     manageCheckbox(){
-        this.view.bindCheckBoxClick( (index, isChecked) => {
-            let res;
-            if (isChecked) res = this.model.setItemDone(index)
-            else res = this.model.setItemInProgress(index)
+        this.view.bindCheckBoxClick( (id, isChecked) => {
+            const res = this.model.setCheckedByID(id, isChecked);
             this.view.refreshTodoItem(res.oldIndex, this.model.get(res.newIndex))
-            this.view.moveItem(res.oldIndex, res.newIndex)
+            this.view.moveItem(this.model.get(res.newIndex), res.oldIndex, res.newIndex)
         })
     }
 
     manageDeleteButton(){
-        this.view.bindDeleteButton(index => {
-            this.model.deleteItem(index)
-            this.view.removeItem(index)
+        this.view.bindDeleteButton(id => {
+            this.model.deleteItemByID(id)
             this.updateItemsCount()
         })
     }

@@ -20,7 +20,7 @@ h1 {
   text-align: center;
   font-family: Monaco, serif;
   font-size: 2em;
-  margin: 0 0 20px 0;
+  margin: 5px 0 20px 0;
 }
 
 .content {
@@ -33,90 +33,9 @@ h1 {
   flex-direction: column;
 }
 
-.checkbox{
-  display: inline-block;
-  float: left;
-}
-
-#todoItemsList {
-  border: var(--ShadowofDarkBlue) 1px dashed;
-  width: 400px;
-  list-style-type: none;
-  height: 100%;
-  overflow: hidden;
-  padding: 2px 0 0 2px;
-  margin: 15px auto 10px;
-  display: block;
-  scrollbar-color: var(--DarkBlue) #0000;
-  scrollbar-width: thin;
-}
-
-#todoItemsList ul {
-  padding: 0;
-  margin: 0;
-  height: 95%;
-  overflow: scroll;
-}
-
-#items_list_header {
-  display: flex;
-  background-color: #c4c4c4;
-  font-size: larger;
-  font-weight: bold;
-  padding: 2px;
-  margin-bottom: 1px;
-  margin-right: 2px;
-}
-
-#items_list_header text {
-
-}
-
-#items_list_header button {
-  margin-left: auto;
-
-}
-
-#todoItemsList li {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  transition: opacity 1s, height 2s;
-}
-
-#todoItemsList li.show {
-  margin-bottom: 2px;
-  opacity: 1;
-  height: 2em;
-  transition: opacity 2s, height 700ms ease-in;
-}
-
-
-.todo_container {
-  width: available;
-  border: 1px solid #000000;
-  border-radius: 7px;
-  background-color: #fafafa;
-  padding: 2px;
-}
-
-.todolabel {
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 85%;
-  margin-left: 2px;
-}
-
-.delete_button {
-  float: right;
-  margin: 1px 7px 0 0;
-  cursor: pointer;
-}
 
 #input_new_item {
-  margin: auto;
+  margin: 1px auto 0;
   width: 60%;
   border: 1px #1f1f1f solid;
   border-radius: 15px;

@@ -1,0 +1,49 @@
+.checkbox{
+    display: inline-block;
+    float: left;
+}
+
+#todoItemsList {
+    --fadeOutDuration: 350ms;
+    --fadeInDuration: 500ms;
+    --shrinkDuration: 500ms;
+    --unshrinkDuration: 500ms;
+}
+
+#todoItemsList li {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity ease-in var(--fadeOutDuration), height var(--shrinkDuration);
+}
+
+#todoItemsList li.show {
+    margin-bottom: 2px;
+    opacity: 1;
+    height: 2em;
+    transition: opacity var(--fadeInDuration), height ease-out var(--unshrinkDuration);
+}
+
+
+.todo_container {
+    width: available;
+    border: 1px solid #000000;
+    border-radius: 7px;
+    background-color: #fafafa;
+    padding: 2px;
+}
+
+.todolabel {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 85%;
+    margin-left: 2px;
+}
+
+.delete_button {
+    float: right;
+    margin: 1px 7px 0 0;
+    cursor: pointer;
+}

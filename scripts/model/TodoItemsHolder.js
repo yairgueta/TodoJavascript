@@ -1,73 +1,78 @@
 import {TodoItem} from "./TodoItem.js";
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 export class TodoItemsHolder{
-    LOCAL_STORAGE_KEY = "todo.js.key.local.storage.json.todo.items.list";
+    ID_PREFIX = "TODO_ITEM$";
 
     constructor() {
         this.loadListFromLocal()
     }
 
-    findItem = (item) => this.currentItems.findIndex(i => i.description === item.description
-                                                && i.isChecked === item.isChecked
-                                                && i.creationTime === item.creationTime
-                                                && i.lastModified === item.lastModified);
+    findItem(item) {
+        const i = this.currentItems.findIndex(i => i.id === item.id);
+        return {item: this.currentItems[i], index: i};
+    }
+
+    findItemByID(id) {
+        const i = this.currentItems.findIndex(i => i.id === id);
+        return {item: this.currentItems[i], index: i};
+    }
 
     sort(){
-        this.currentItems.sort((a, b)=>100*(a.isChecked - b.isChecked)+(a.creationTime<b.creationTime)*2 -1);
+        this.currentItems.sort(
+            (a, b)=>
+                100*(a.isChecked - b.isChecked)
+                + (a.creationTime<b.creationTime)*2 -1);
     }
 
     addItem(description){
-        const item = new TodoItem(false, description)
+        const item = new TodoItem(false, description, this.ID_PREFIX+uuidv4())
         this.currentItems.unshift(item)
-        this.saveToLocal()
+        localStorage.setItem(item.id, JSON.stringify(item))
         return item
     }
 
-    setItemDone(i){
-        const item = this.currentItems[i]
-        item.isChecked = true;
-        this.sort()
-        this.saveToLocal()
-        return {oldIndex: i, newIndex: this.findItem(item)}
+    setChecked(todo, isChecked){
+        this.setCheckedByID(todo.id, isChecked)
     }
 
-    setItemInProgress(i){
-        const item = this.currentItems[i]
-        item.isChecked = false;
+    setCheckedByID(id, isChecked){
+        const {item, index} = this.findItemByID(id);
+        item.isChecked = isChecked;
         this.sort()
-        this.saveToLocal()
-        return {oldIndex: i, newIndex: this.findItem(item)}
+        window.localStorage.setItem(item.id, JSON.stringify(item))
+        return {oldIndex: index, newIndex: this.findItem(item).index}
     }
 
-    deleteItem(i){
-        this.currentItems.splice(i, 1);
-        this.saveToLocal()
+    deleteItem(todo){
+        this.deleteItemByID(todo.id);
+    }
+
+    deleteItemByID(id){
+        const {item, index} = this.findItemByID(id);
+        this.currentItems.splice(index, 1);
+        window.localStorage.removeItem(item.id);
     }
 
     clearAll(){
         this.currentItems.length = 0;
-        this.saveToLocal();
+        window.localStorage.clear();
     }
 
     get(i){
         return this.currentItems[i];
     }
 
-
-    saveToLocal(){
-        let jsonItemsList = JSON.stringify(this.currentItems);
-        window.localStorage.setItem(this.LOCAL_STORAGE_KEY, jsonItemsList);
-    }
-
-
     loadListFromLocal(){
-        let jsonItemsList = window.localStorage.getItem(this.LOCAL_STORAGE_KEY);
-        if (jsonItemsList == null) {
-            this.currentItems = []
-            return
+        this.currentItems = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith(this.ID_PREFIX)){
+                const item = TodoItem.from(localStorage.getItem(key))
+                this.currentItems.push(item)
+            }
         }
-        let raw = JSON.parse(jsonItemsList);
-        this.currentItems = raw.map(v => TodoItem.from(v));
+        this.sort();
     }
 
 }
