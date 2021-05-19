@@ -13,4 +13,4 @@ This is my first project in Javascript, and I tried to build it according to _**
 ### Some things to do in the future (A todo list)
 - [ ] Clicking an existing todo item should open a new window with some information about its creation time and last modification time.
 - [ ] Clicking an existing todo item should let the user edit the description of the item.
-- [ ] Fix some CSS animations.
+- [X] Fix some CSS animations.
