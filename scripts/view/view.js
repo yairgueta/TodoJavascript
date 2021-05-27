@@ -7,8 +7,8 @@ export class View{
 
 
     constructor() {
-        this.nextID = 0;
         this.__todoItemTemplate = document.getElementById("todo_item_to_copy");
+        this.__todoItemTemplate.style.visibility = 'collapse'
 
         this.todoList = document.createElement("ul")
         document.getElementById("todoItemsList").append(this.todoList)
@@ -29,7 +29,12 @@ export class View{
         this.form.submitButton = document.querySelector("#input_new_item > button");
     }
 
-    get _todoItemTemplate() { return this.__todoItemTemplate.cloneNode(true); }
+    get _todoItemTemplate() {
+        const cloned = this.__todoItemTemplate.cloneNode(true);
+        cloned.style.visibility = 'visible';
+        cloned.style.display = 'flex'
+        return cloned;
+    }
 
     get textInputValue() { return this.form.textInput.value; }
 
@@ -41,14 +46,6 @@ export class View{
 
     updateTodoListHeader(i){
         this.todoListHeader.label.innerText = `Total items: ${i}`
-    }
-
-    _indexToID(i){
-        return `todo.item.container.ID${i}`
-    }
-
-    _idToIndex(id){
-        return id.substr(22)
     }
 
     _createCleanTodoItem(){

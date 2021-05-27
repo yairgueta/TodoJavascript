@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  Font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
 }
 
 :root {
@@ -15,13 +14,44 @@ body {
   margin: 0;
 }
 
-h1 {
-  text-shadow: 2px 2px #999;
-  text-align: center;
-  font-family: Monaco, serif;
-  font-size: 2em;
-  margin: 5px 0 20px 0;
+header {
+  position: relative;
+
 }
+
+h1 {
+  text-align: center;
+  font-family: Yanone Kaffeesatz, serif;
+  font-size: 4em;
+  font-weight: bolder;
+  margin: 23px 0 20px 0;
+  position: relative;
+  z-index: 1;
+  color: hsl(220, 24%, 30%);
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.header_bg {
+  --order: 0;
+  border-radius: 50%;
+  height: 6em;
+  width: 6em;
+  background-color: hsl(200, 50%, calc(var(--order)*7% + 60%), 70%);
+  position: absolute;
+  left: calc(var(--order) * 4.5em - 1em);
+  top: 0;
+  animation: 500ms linear calc(var(--order) * 200ms) 1 slideInFromRight;
+}
+
+
 
 .content {
   max-width: 500px;

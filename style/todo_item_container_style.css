@@ -1,8 +1,3 @@
-.checkbox{
-    display: inline-block;
-    float: left;
-}
-
 #todoItemsList {
     --fadeOutDuration: 350ms;
     --fadeInDuration: 500ms;
@@ -18,32 +13,42 @@
 }
 
 #todoItemsList li.show {
-    margin-bottom: 2px;
+    margin-bottom: 1px;
     opacity: 1;
-    height: 2em;
+    height: 3em;
     transition: opacity var(--fadeInDuration), height ease-out var(--unshrinkDuration);
 }
 
 
 .todo_container {
-    width: available;
+    width: auto;
+    height: 100%;
     border: 1px solid #000000;
     border-radius: 7px;
     background-color: #fafafa;
     padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox{
 }
 
 .todolabel {
-    display: inline-block;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 85%;
-    margin-left: 2px;
+    width: auto;
+    margin-left: 3px;
+    flex-grow: 1;
+    font-size: x-large;
+    font-family: "Yanone Kaffeesatz", monospace;
+    font-weight: bolder;
 }
 
 .delete_button {
-    float: right;
-    margin: 1px 7px 0 0;
     cursor: pointer;
+    margin-inline-end: 5px;
+    padding: 10px;
 }

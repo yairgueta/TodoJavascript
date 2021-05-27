@@ -8,15 +8,22 @@
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="style/todo_item_container_style.css">
   <link rel="stylesheet" href="style/items_list.css">
-  <title>TodoList</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap" rel="stylesheet">  <title>TodoList</title>
 </head>
 <body>
 <div class="content">
 <header>
+  <div class="header_bg" style="--order: 0"></div>
+  <div class="header_bg" style="--order: 1"></div>
+  <div class="header_bg" style="--order: 2"></div>
+  <div class="header_bg" style="--order: 3"></div>
+  <div class="header_bg" style="--order: 4"></div>
+  <div class="header_bg" style="--order: 5"></div>
   <h1>Welcome To Todo List!</h1>
 </header>
 
-<div id="todo_item_to_copy" class="todo_container" hidden>
+<div id="todo_item_to_copy" class="todo_container" style="display: none">
   <input type="checkbox" class="todoitem checkbox">
   <div class="todoitem todolabel">Template</div>
   <img class="todoitem delete_button" src="resources/trash.svg"/>
@@ -35,7 +42,6 @@
     <button type="button">Clear All</button>
   </div>
 </div>
-
 </div>
 </body>
 </html>

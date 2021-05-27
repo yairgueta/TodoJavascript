@@ -6,7 +6,6 @@ import {Control} from "./scripts/control.js";
 
 
 
-window.newTodo = (b, str) => new TodoItem(b, str);
 const testTodos = [
     new TodoItem(false, "a"),
     new TodoItem(true, "b"),
