@@ -12,48 +12,58 @@
 
 body {
   margin: 0;
+  overflow: hidden;
 }
 
 header {
-  position: relative;
-
+  width: 100%;
+  display: grid;
+  grid-auto-columns: auto;
 }
 
 h1 {
   text-align: center;
   font-family: Yanone Kaffeesatz, serif;
-  font-size: 4em;
+  font-size: min(4em, 100vw);
   font-weight: bolder;
   margin: 23px 0 20px 0;
-  position: relative;
-  z-index: 1;
+  /*position: relative;*/
+  grid-area: 1 / 1 / 1 / 14;
+  z-index: 100;
   color: hsl(220, 24%, 30%);
+  /*display: none;*/
 }
 
 @keyframes slideInFromRight {
   0% {
+    visibility: visible;
     transform: translateX(100%);
+    /*left: -100vw;*/
+  }
+  50% {
+    /*left: 9em;*/
   }
   100% {
+    visibility: visible;
     transform: translateX(0);
   }
 }
 
 .header_bg {
-  --order: 0;
+  visibility: hidden;
   border-radius: 50%;
-  height: 6em;
-  width: 6em;
-  background-color: hsl(200, 50%, calc(var(--order)*7% + 60%), 70%);
-  position: absolute;
-  left: calc(var(--order) * 4.5em - 1em);
-  top: 0;
-  animation: 500ms linear calc(var(--order) * 200ms) 1 slideInFromRight;
+  padding-top: 100%;    /* aspect ratio 1:1 */
+  height: available;
+  grid-area: 1 / calc(var(--order) * 2 + 1) / 1 / span 3;
+  background-color: hsl(200, 50%, calc(var(--order)*7% + 60%), 94%);
+  animation: 500ms linear calc(var(--order) * 200ms) 1 slideInFromRight forwards;
+  z-index: calc(99 - var(--order));
 }
 
 
 
 .content {
+  width: available;
   max-width: 500px;
   margin: auto;
   align-items: center;
