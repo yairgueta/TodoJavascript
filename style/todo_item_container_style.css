@@ -21,15 +21,21 @@
 
 
 .todo_container {
+    --todoContainerBorderColor: #acacac;
     width: auto;
     height: 100%;
-    border: 1px solid #000000;
+    border: 1px solid var(--todoContainerBorderColor);
     border-radius: 7px;
     background-color: #fafafa;
     padding: 2px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    z-index: 100;
+}
+
+.todo_container:hover {
+    --todoContainerBorderColor: #37aeff;
 }
 
 .checkbox{
@@ -43,7 +49,6 @@
     margin-left: 3px;
     flex-grow: 1;
     font-size: x-large;
-    font-family: "Yanone Kaffeesatz", monospace;
     font-weight: bolder;
 }
 

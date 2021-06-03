@@ -1,3 +1,7 @@
+'use strict'
+
+import {TodoEditorView} from "./TodoEditorView.js";
+
 export class View{
 
     static CLASSNAME_CHECKBOX = "checkbox";
@@ -27,6 +31,8 @@ export class View{
         this.form = document.querySelector("#input_new_item");
         this.form.textInput = document.querySelector("#input_new_item > input[type='text']");
         this.form.submitButton = document.querySelector("#input_new_item > button");
+
+        this.todoEditorView = new TodoEditorView();
     }
 
     get _todoItemTemplate() {

@@ -1,0 +1,45 @@
+#todoItemEditor-bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.22);
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+}
+
+#todoItemEditor-main {
+  width: 70%;
+  max-width: 300px;
+  height: 80%;
+  max-height: 320px;
+  background-color: white;
+  border-radius: 6%;
+  border: 1px solid hsl(0, 0%, 60%);
+  z-index: 101;
+  transform: translateY(100px);
+  /*padding: 1%;*/
+}
+
+#todoItemEditor-main hr {
+  --hrColor: #fff;
+  color: var(--hrColor);
+  background-color: var(--hrColor);
+  border-color: var(--hrColor);
+}
+
+#todoItemEditor-main > .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 3%;
+  padding-left: 4%;
+  padding-right: 2%;
+}
+
+#todoItemEditor-main > .header > .exit_button {
+  margin-top: 4px;
+  margin-right: 4px;
+  margin-left: auto;
+  cursor: pointer;
+}

@@ -22,18 +22,26 @@
 
 #items_list_header {
     display: flex;
+    align-items: center;
     background-color: #c4c4c4;
-    font-size: larger;
     font-weight: bold;
     padding: 2px 2px 2px 10px;
     margin-bottom: 1px;
     margin-right: 2px;
+    font-size: 1.3rem;
 }
 
-#items_list_header text {
-
+#items_list_header label {
+    height: min-content;
 }
 
 #items_list_header button {
     margin-left: auto;
+    font-size: inherit;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+#items_list_header button:hover {
+    background-color: #fdfdfd;
 }

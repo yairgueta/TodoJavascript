@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="style/todo_item_container_style.css">
   <link rel="stylesheet" href="style/items_list.css">
+  <link rel="stylesheet" href="style/todo_item_editor.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap" rel="stylesheet">
   <title>TodoList</title>
@@ -41,6 +42,22 @@
   <div id="items_list_header">
     <label>total items: </label>
     <button type="button">Clear All</button>
+  </div>
+</div>
+
+<div id="todoItemEditor-bg">
+  <div id="todoItemEditor-main">
+    <div class="header">
+      <div class="text">HERE EDIT THIS ITEM</div>
+      <div class="exit_button">&#10006</div>
+    </div>
+    <hr>
+    <div class="body">
+      <input type="checkbox" class="checkbox">
+      <input type="text" class="description">
+      <button type="submit" class="submit">Save Changes</button>
+    </div>
+
   </div>
 </div>
 </div>
