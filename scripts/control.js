@@ -9,7 +9,6 @@ export class Control {
         this.model = new TodoItemsHolder()
 
 
-        // this.todoEditorView.dismiss()
 
         this.drawTodoList()
 
