@@ -5,16 +5,18 @@ export class TodoEditorView {
         this.background = document.getElementById("todoItemEditor-bg")
         this.main = document.getElementById("todoItemEditor-main")
         this.header = {
-            it: document.querySelector("#todoItemEditor-main .header"),
-            text: document.querySelector("#todoItemEditor-main .header .text"),
-            exitBtn: document.querySelector("#todoItemEditor-main .header .exit_button"),
+            it      : document.querySelector("#todoItemEditor-main .header"),
+            text    : document.querySelector("#todoItemEditor-main .header .text"),
+            exitBtn : document.querySelector("#todoItemEditor-main .header .exit_button"),
         }
         this.body = {
-            it: document.querySelector("#todoItemEditor-main .body"),
-            doneInd: document.querySelector("#todoItemEditor-main .body .done"),
-            notDoneInd: document.querySelector("#todoItemEditor-main .body .not_done"),
-            description: document.querySelector("#todoItemEditor-main .body .description"),
-            submitBtn: document.querySelector("#todoItemEditor-main .body .submit"),
+            it          : document.querySelector("#todoItemEditor-main .body"),
+            doneInd     : document.querySelector("#todoItemEditor-main .body .done"),
+            notDoneInd  : document.querySelector("#todoItemEditor-main .body .not_done"),
+            description : document.querySelector("#todoItemEditor-main .body .description"),
+            submitBtn   : document.querySelector("#todoItemEditor-main .body .submit"),
+            created     : document.querySelector("#todoItemEditor-main .body .created"),
+            lastEdited  : document.querySelector("#todoItemEditor-main .body .last_edited"),
         }
 
         this.header.exitBtn.addEventListener("pointerdown", evt => {
@@ -31,6 +33,8 @@ export class TodoEditorView {
         this.background.style.display = "flex";
         this.showRightInd()
         this.body.description.value = todo.description
+        this.body.lastEdited.textContent = todo.lastModified.toLocaleString()
+        this.body.created.textContent = todo.creationTime.toLocaleString()
     }
 
     dismiss() {
@@ -40,6 +44,7 @@ export class TodoEditorView {
 
     bindIndicators(handler) {
         const onClick = evt => {
+            this.body.lastEdited.textContent = this.displayedTodo.lastModified.toLocaleString()
             evt.target.style.display = "none"
             this.displayedTodo.isChecked = !this.displayedTodo.isChecked
             handler(this.displayedTodo.id, this.displayedTodo.isChecked)
