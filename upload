@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+SRC="."
+DEST="gs://www.yairgueta.co.il/todo-js"
+EXCLUDES="(^\..*)|upload"
+
+gsutil rsync -d -r -x $EXCLUDES $SRC $DEST
