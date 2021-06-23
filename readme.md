@@ -11,6 +11,6 @@ This is my first project in Javascript, and I tried to build it according to _**
 * The control class located in [`./scripts/control.js`](./scripts/control.js) and it is very simple.
 
 ### Some things to do in the future (A todo list)
-- [ ] Clicking an existing todo item should open a new window with some information about its creation time and last modification time.
-- [ ] Clicking an existing todo item should let the user edit the description of the item.
+- [X] Clicking an existing todo item should open a new window with some information about its creation time and last modification time.
+- [X] Clicking an existing todo item should let the user edit the description of the item.
 - [X] Fix some CSS animations.
