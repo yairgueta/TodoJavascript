@@ -1,7 +1,7 @@
 #todoItemEditor-bg {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.22);
+  background-color: rgba(0, 0, 0, 0.30);
   position: absolute;
   z-index: 100;
   display: flex;
@@ -12,29 +12,30 @@
   width: 70%;
   max-width: 300px;
   height: 80%;
-  max-height: 320px;
+  max-height: 220px;
   background-color: white;
   border-radius: 6%;
   border: 1px solid hsl(0, 0%, 60%);
   z-index: 101;
   transform: translateY(100px);
-  /*padding: 1%;*/
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-#todoItemEditor-main hr {
-  --hrColor: #fff;
-  color: var(--hrColor);
-  background-color: var(--hrColor);
-  border-color: var(--hrColor);
-}
 
 #todoItemEditor-main > .header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 3%;
+  padding-top: 1px;
   padding-left: 4%;
   padding-right: 2%;
+  font-size: x-large;
+  border-bottom: 1px solid black;
+  margin-bottom: 4px;
+  background-color: #f7f9ff;
+  font-weight: bolder;
 }
 
 #todoItemEditor-main > .header > .exit_button {
@@ -42,4 +43,92 @@
   margin-right: 4px;
   margin-left: auto;
   cursor: pointer;
+}
+
+#todoItemEditor-main > .body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  padding: 2px 10px;
+}
+
+#todoItemEditor-main > .body > .description {
+  margin-top: auto;
+  margin-bottom: 6%;
+  width: 90%;
+  font-size: x-large;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+#todoItemEditor-main > .body > .description:focus {
+  outline: none;
+  border-bottom: 1px solid dodgerblue;
+}
+
+#todoItemEditor-main > .body > .indicator {
+  cursor: pointer;
+  padding: 3px 9px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#todoItemEditor-main > .body > .indicator:hover {
+  background-color: #e1eff2;
+  border-radius: 15px;
+}
+
+#todoItemEditor-main > .body > .indicator:active {
+  color: #555555;
+}
+
+
+#todoItemEditor-main > .body > .indicator::before {
+  margin-right: 5px;
+}
+
+
+#todoItemEditor-main > .body > .done::before {
+  color: green;
+  content: "✔";
+}
+
+#todoItemEditor-main > .body > .not_done::before {
+  color: red;
+  content: "✘";
+}
+
+
+#todoItemEditor-main > .body > .time_view {
+  font-weight: lighter;
+  font-size: small;
+  margin-right: auto;
+}
+
+#todoItemEditor-main > .body > .time_view::before {
+  margin-right: 5px;
+}
+
+#todoItemEditor-main > .body > .created::before {
+  content: "Created At:";
+}
+
+#todoItemEditor-main > .body > .last_edited::before {
+  content: "Last Edited:";
+}
+
+#todoItemEditor-main > .body > .submit {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  margin-bottom: 4px;
+  border: 1px solid #5a5a5a;
+  background-color: #2e8b30;
+  color: white;
+  cursor: pointer;
+}
+
+#todoItemEditor-main > .body > .submit:hover {
+  background-color: rgba(46, 139, 48, 0.8);
 }

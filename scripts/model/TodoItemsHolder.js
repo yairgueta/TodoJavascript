@@ -8,7 +8,7 @@ export class TodoItemsHolder{
         this.loadListFromLocal()
     }
 
-    findItem(item) {
+    _findItem(item) {
         const i = this.currentItems.findIndex(i => i.id === item.id);
         return {item: this.currentItems[i], index: i};
     }
@@ -32,26 +32,25 @@ export class TodoItemsHolder{
         return item
     }
 
-    setChecked(todo, isChecked){
-        this.setCheckedByID(todo.id, isChecked)
-    }
-
     setCheckedByID(id, isChecked){
         const {item, index} = this.findItemByID(id);
         item.isChecked = isChecked;
         this.sort()
         window.localStorage.setItem(item.id, JSON.stringify(item))
-        return {oldIndex: index, newIndex: this.findItem(item).index}
-    }
-
-    deleteItem(todo){
-        this.deleteItemByID(todo.id);
+        return {oldIndex: index, newIndex: this._findItem(item).index}
     }
 
     deleteItemByID(id){
         const {item, index} = this.findItemByID(id);
         this.currentItems.splice(index, 1);
         window.localStorage.removeItem(item.id);
+    }
+
+    updateDescriptionByID(id, description) {
+        const {item, index} = this.findItemByID(id)
+        item.description = description
+        window.localStorage.setItem(item.id, JSON.stringify(item))
+        return {item, index}
     }
 
     clearAll(){

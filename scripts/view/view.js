@@ -31,8 +31,6 @@ export class View{
         this.form = document.querySelector("#input_new_item");
         this.form.textInput = document.querySelector("#input_new_item > input[type='text']");
         this.form.submitButton = document.querySelector("#input_new_item > button");
-
-        this.todoEditorView = new TodoEditorView();
     }
 
     get _todoItemTemplate() {
@@ -169,7 +167,7 @@ export class View{
     bindLabelClick(handler){
         this.todoList.addEventListener('click', e => {
             if (e.target.classList.contains(View.CLASSNAME_LABEL)){
-                handler(this._getContainerIndex(e.target.container));
+                handler(e.target.container.id);
             }
         });
     }

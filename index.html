@@ -9,8 +9,9 @@
   <link rel="stylesheet" href="style/todo_item_container_style.css">
   <link rel="stylesheet" href="style/items_list.css">
   <link rel="stylesheet" href="style/todo_item_editor.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <title>TodoList</title>
 </head>
 <body>
@@ -48,12 +49,14 @@
 <div id="todoItemEditor-bg">
   <div id="todoItemEditor-main">
     <div class="header">
-      <div class="text">HERE EDIT THIS ITEM</div>
+      <div class="text">Todo Item Editor</div>
       <div class="exit_button">&#10006</div>
     </div>
-    <hr>
     <div class="body">
-      <div class="is_done_indicator">This Task is Done!</div>
+      <div class="done indicator">This Task is Done!</div>
+      <div class="not_done indicator">This Task is not Done yet!</div>
+      <div class="time_view created">15:00 1/1/1970</div>
+      <div class="time_view last_edited">15:00 1/1/1970</div>
       <input type="text" class="description">
       <button type="submit" class="submit">Save Changes</button>
     </div>
